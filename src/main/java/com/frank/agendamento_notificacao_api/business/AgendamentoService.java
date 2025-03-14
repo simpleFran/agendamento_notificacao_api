@@ -43,5 +43,13 @@ public class AgendamentoService {
         return agendamentoMapper.paraOut(agendamento);
     }
 
-   
+    // cancelar envio
+
+    public void cancelarAgendamento(Long id) {
+
+        Agendamento agendamentoCancelar = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Id não encontrado."));
+
+        this.repository.save(agendamentoMapper.paraEntityCancelamento(agendamentoCancelar));
+    }
 }
